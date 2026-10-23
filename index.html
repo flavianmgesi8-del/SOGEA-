@@ -1,29 +1,12 @@
-<!-- HII NDIO SEHEMU YA CHINI KAMA ULICHOZUNGUSHIA -->
-<style>
-.actions-row{display:flex;justify-content:center;gap:12px;margin:18px 0;padding:0 10px}
-.ab{width:58px;height:58px;border-radius:50%;border:1px solid #333;background:#222;color:#aaa;font-size:22px;display:flex;align-items:center;justify-content:center}
-.ab.x{background:#2a2a2a;color:white;font-size:28px;width:62px;height:62px}
-.ab.star{color:#6ecbff}.ab.heart{background:#ff2a4a;color:white;border:none;width:68px;height:68px;font-size:30px}.ab.boost{color:#a68eff}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#121212;border-top:1px solid #222;display:flex;justify-content:space-around;padding:10px 0 14px}
-.nav{color:#777;text-align:center;font-size:11px}.nav.active{color:white}.nav .ic{font-size:22px;display:block;margin-bottom:3px}
-.badge{position:absolute;background:#ff2a4a;color:white;font-size:10px;padding:2px 5px;border-radius:10px;top:-6px;right:18px;font-weight:bold}
-.nav{position:relative}
-</style>
-
-<div class="actions-row">
-  <button class="ab">↺</button>
-  <button class="ab x">✕</button>
-  <button class="ab star">★</button>
-  <button class="ab heart">♥</button>
-  <button class="ab boost">⚡</button>
-</div>
-
-<div style="height:80px"></div>
-
-<div class="bottom-nav">
-  <div class="nav active"><span class="ic">🔥</span>Swipe</div>
-  <div class="nav"><span class="ic">◎</span>Explore</div>
-  <div class="nav"><span class="ic">♡</span><span class="badge">3</span>Likes</div>
-  <div class="nav"><span class="ic">💬</span>Chat</div>
-  <div class="nav"><span class="ic">👤</span>Profile</div>
-</div>
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SOGEA</title><style>body{background:#121212;color:white;font-family:sans-serif;margin:0;height:100vh;overflow:hidden}.stack{width:95%;max-width:380px;height:65vh;margin:20px auto;background:#222;border-radius:20px;position:relative;overflow:hidden}.stack img{width:100%;height:100%;object-fit:cover}.overlay{position:absolute;bottom:0;width:100%;background:linear-gradient(transparent,black);padding:15px}.actions{display:flex;justify-content:center;gap:12px;margin:10px}.b{width:58px;height:58px;border-radius:50%;border:1px solid #333;background:#222;color:white;font-size:24px}.b.heart{background:red;border:none;width:65px;height:65px}.bottom{display:flex;justify-content:space-around;background:#111;padding:12px;position:fixed;bottom:0;width:100%;border-top:1px solid #222}.bottom div{color:#888;font-size:12px;text-align:center}.bottom div.active{color:white}</style></head><body>
+<div class="stack" id="st"><img id="img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600"><div class="overlay"><h2 id="nm">Neema 23 ✅</h2><p>📍 4km - Mwanza - Active</p></div></div>
+<div class="actions"><button class="b" onclick="next()">↺</button><button class="b" onclick="next()">✕</button><button class="b" style="color:#6ecbff" onclick="alert('Super Like!')">★</button><button class="b heart" onclick="like()">♥</button><button class="b" style="color:#a68eff" onclick="alert('Boost! Lipia PLUS')">⚡</button></div>
+<div class="bottom"><div class="active">🔥<br>Swipe</div><div>◎<br>Explore</div><div>♡<br>Likes</div><div>💬<br>Chat</div><div>👤<br>Profile</div></div>
+<script>
+const p=[{i:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600",n:"Neema 23 ✅"},{i:"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600",n:"Faith 22 ✅"},{i:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600",n:"Zuwena 26 ✅"}];let k=0;
+function next(){k=(k+1)%p.length;document.getElementById('img').src=p[k].i;document.getElementById('nm').innerText=p[k].n}
+function like(){alert('❤️ MATCH! Umempenda '+document.getElementById('nm').innerText);next()}
+let sx=0;document.getElementById('st').addEventListener('touchstart',e=>sx=e.touches[0].clientX);
+document.getElementById('st').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx;if(dx>80)like();if(dx<-80)next()});
+</script></body></html>
