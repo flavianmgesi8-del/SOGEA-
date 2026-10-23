@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SOGEA</title><style>body{background:#121212;color:white;font-family:sans-serif;margin:0;height:100vh;overflow:hidden}.stack{width:95%;max-width:380px;height:65vh;margin:20px auto;background:#222;border-radius:20px;position:relative;overflow:hidden}.stack img{width:100%;height:100%;object-fit:cover}.overlay{position:absolute;bottom:0;width:100%;background:linear-gradient(transparent,black);padding:15px}.actions{display:flex;justify-content:center;gap:12px;margin:10px}.b{width:58px;height:58px;border-radius:50%;border:1px solid #333;background:#222;color:white;font-size:24px}.b.heart{background:red;border:none;width:65px;height:65px}.bottom{display:flex;justify-content:space-around;background:#111;padding:12px;position:fixed;bottom:0;width:100%;border-top:1px solid #222}.bottom div{color:#888;font-size:12px;text-align:center}.bottom div.active{color:white}</style></head><body>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>SOGEA</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#121212"><style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#121212;color:white;font-family:sans-serif;height:100vh;overflow:hidden}
+.stack{width:92%;max-width:380px;height:58vh;margin:12px auto;background:#1e1e1e;border-radius:22px;position:relative;overflow:hidden;z-index:1}
+.stack img{width:100%;height:100%;object-fit:cover}
+.overlay{position:absolute;bottom:0;width:100%;background:linear-gradient(transparent,rgba(0,0,0,.95));padding:14px}
+.actions{display:flex;justify-content:center;gap:14px;margin:12px;position:relative;z-index:5}
+.b{width:56px;height:56px;border-radius:50%;border:1px solid #333;background:#222;color:white;font-size:22px;cursor:pointer}
+.b.heart{background:#ff2a4a;border:none;width:66px;height:66px;font-size:30px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#121212;border-top:1px solid #222;display:flex;justify-content:space-around;padding:12px 0 18px;z-index:999}
+.nav-btn{color:#777;text-align:center;font-size:11px;background:none;border:none;cursor:pointer;width:20%;pointer-events:auto}
+.nav-btn.active{color:white}.nav-btn .ic{font-size:20px;display:block;margin-bottom:3px}
+.page{position:fixed;top:0;left:0;right:0;bottom:75px;background:#121212;z-index:50;display:none;padding:20px;overflow:auto}
+</style></head><body>
+
+<!-- PAGE: SWIPE -->
+<div id="page-swipe">
 <div class="stack" id="st"><img id="img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600"><div class="overlay"><h2 id="nm">Neema 23 ✅</h2><p>📍 4km - Mwanza - Active</p></div></div>
-<div class="actions"><button class="b" onclick="next()">↺</button><button class="b" onclick="next()">✕</button><button class="b" style="color:#6ecbff" onclick="alert('Super Like!')">★</button><button class="b heart" onclick="like()">♥</button><button class="b" style="color:#a68eff" onclick="alert('Boost! Lipia PLUS')">⚡</button></div>
-<div class="bottom"><div class="active">🔥<br>Swipe</div><div>◎<br>Explore</div><div>♡<br>Likes</div><div>💬<br>Chat</div><div>👤<br>Profile</div></div>
+<div class="actions"><button class="b" onclick="next()">↺</button><button class="b" onclick="next()">✕</button><button class="b" style="color:#6ecbff" onclick="superlike()">★</button><button class="b heart" onclick="like()">♥</button><button class="b" style="color:#a68eff" onclick="boost()">⚡</button></div>
+</div>
+
+<!-- PAGE: EXPLORE -->
+<div id="page-explore" class="page"><h2>🧭 Explore</h2><br><p>Karibu SOGEA Explore!</p><br><div style="background:#222;padding:15px;border-radius:12px">🔥 Moto Sana Dar<br>💘 Watu 12 wapya karibu nawe<br>🎓 Wanafunzi tu</div></div>
+
+<!-- PAGE: LIKES -->
+<div id="page-likes" class="page"><h2>♡ Likes <span style="background:red;padding:2px 8px;border-radius:10px;font-size:12px">3</span></h2><br><p>Watu 3 wamekulike! Lipia PLUS uwaone</p><br><div style="filter:blur(10px)"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" style="width:80px;height:80px;border-radius:12px"> <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200" style="width:80px;height:80px;border-radius:12px"></div><br><button onclick="alert('Lipa 15,000 TZS - 0793092947')" style="background:#ff2a4a;color:white;border:none;padding:12px;border-radius:10px;width:100%">Lipia PLUS - 15,000 TZS</button></div>
+
+<!-- PAGE: CHAT -->
+<div id="page-chat" class="page"><h2>💬 Chat</h2><br><p>Hakuna chat bado. Anza kuswipe ❤️ u-match!</p></div>
+
+<!-- PAGE: PROFILE -->
+<div id="page-profile" class="page"><h2>👤 Profile</h2><br><div style="background:#222;padding:15px;border-radius:12px;text-align:center"><h3>Wewe</h3><p>📍 Mbeya, TZ</p><br><p style="background:#ffe0ec;color:#ff2a4a;padding:8px;border-radius:8px;font-weight:bold">0793092947 - M-Pesa</p><p style="font-size:12px;margin-top:8px">PLUS: 15,000 TZS</p></div></div>
+
+<div class="bottom">
+<button class="nav-btn active" id="btn-swipe" onclick="openPage('swipe')"> <span class="ic">🔥</span>Swipe</button>
+<button class="nav-btn" id="btn-explore" onclick="openPage('explore')"> <span class="ic">◎</span>Explore</button>
+<button class="nav-btn" id="btn-likes" onclick="openPage('likes')"> <span class="ic">♡</span>Likes</button>
+<button class="nav-btn" id="btn-chat" onclick="openPage('chat')"> <span class="ic">💬</span>Chat</button>
+<button class="nav-btn" id="btn-profile" onclick="openPage('profile')"> <span class="ic">👤</span>Profile</button>
+</div>
+
 <script>
-const p=[{i:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600",n:"Neema 23 ✅"},{i:"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600",n:"Faith 22 ✅"},{i:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600",n:"Zuwena 26 ✅"}];let k=0;
-function next(){k=(k+1)%p.length;document.getElementById('img').src=p[k].i;document.getElementById('nm').innerText=p[k].n}
-function like(){alert('❤️ MATCH! Umempenda '+document.getElementById('nm').innerText);next()}
-let sx=0;document.getElementById('st').addEventListener('touchstart',e=>sx=e.touches[0].clientX);
-document.getElementById('st').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx;if(dx>80)like();if(dx<-80)next()});
-</script></body></html>
+const people=[{img:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600",name:"Neema 23 ✅"},{img:"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600",name:"Faith 22 ✅"},{img:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600",name:"Zuwena 26 ✅"}];let k=0;
+function next(){k=(k+1)%people.length;document.getElementById('img').src=people[k].img;document.getElementById('nm').innerText=people[k].name}
+function like(){alert('❤️ MATCH! Umempenda '+people[k].name);next()}
+function superlike(){alert('⭐ Super Like imetumwa!')}; function boost(){alert('⚡ Boost! Lipia PLUS 15,000')}
+function openPage(p){
+ document.querySelectorAll('.page').forEach(el=>el.style.display='none');
+ document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));
+ if(p!=='swipe'){document.getElementById('page-'+p).style.display='block'}
+ document.getElementById('btn-'+p).classList.add('active');
+}
+</script>
+</body></html>
