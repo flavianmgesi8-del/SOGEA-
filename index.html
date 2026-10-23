@@ -1,65 +1,29 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>SOGEA - Tinder ya Bongo</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#ff5a8f">
+<!-- HII NDIO SEHEMU YA CHINI KAMA ULICHOZUNGUSHIA -->
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:sans-serif;background:#f5f5f5;overflow:hidden;height:100vh}
-.top{background:linear-gradient(90deg,#ff5a8f,#ff8a5c);color:white;padding:12px;text-align:center;font-weight:bold;font-size:20px}
-.stack{position:relative;width:100%;max-width:360px;height:520px;margin:15px auto}
-.card{position:absolute;width:100%;height:100%;background:white;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.2);overflow:hidden;transition:transform .3s}
-.card img{width:100%;height:75%;object-fit:cover}
-.info{padding:12px;text-align:left}.info h3{font-size:20px}.info p{color:gray;font-size:14px}
-.buttons{position:absolute;bottom:15px;width:100%;display:flex;justify-content:center;gap:20px}
-.b{width:60px;height:60px;border-radius:50%;border:none;font-size:28px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
-.nope{background:white;color:#ff4d4d}.like{background:#ff5a8f;color:white;font-size:32px}.super{background:#00d2ff;color:white}
-.plus{max-width:360px;margin:10px auto;background:white;border-radius:15px;padding:15px;text-align:center;border:2px solid #ff5a8f}
-.num{background:#ffe0ec;padding:8px;border-radius:8px;font-weight:bold;margin:8px 0}
+.actions-row{display:flex;justify-content:center;gap:12px;margin:18px 0;padding:0 10px}
+.ab{width:58px;height:58px;border-radius:50%;border:1px solid #333;background:#222;color:#aaa;font-size:22px;display:flex;align-items:center;justify-content:center}
+.ab.x{background:#2a2a2a;color:white;font-size:28px;width:62px;height:62px}
+.ab.star{color:#6ecbff}.ab.heart{background:#ff2a4a;color:white;border:none;width:68px;height:68px;font-size:30px}.ab.boost{color:#a68eff}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#121212;border-top:1px solid #222;display:flex;justify-content:space-around;padding:10px 0 14px}
+.nav{color:#777;text-align:center;font-size:11px}.nav.active{color:white}.nav .ic{font-size:22px;display:block;margin-bottom:3px}
+.badge{position:absolute;background:#ff2a4a;color:white;font-size:10px;padding:2px 5px;border-radius:10px;top:-6px;right:18px;font-weight:bold}
+.nav{position:relative}
 </style>
-</head>
-<body>
-<div class="top">💖 SOGEA</div>
 
-<div class="stack" id="stack">
-<div class="card"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500"><div class="info"><h3>Neema, 24 📍 Mwanza</h3><p>Anapenda kusafiri & chapati 😍</p></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500"><div class="info"><h3>Faith, 22 📍 Arusha</h3><p>Mwanafunzi, napenda gym</p></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500"><div class="info"><h3>Zuwena, 26 📍 Dar</h3><p>Business lady, single</p></div></div>
+<div class="actions-row">
+  <button class="ab">↺</button>
+  <button class="ab x">✕</button>
+  <button class="ab star">★</button>
+  <button class="ab heart">♥</button>
+  <button class="ab boost">⚡</button>
 </div>
 
-<div class="buttons">
-<button class="b nope" onclick="swipe('left')">✕</button>
-<button class="b super" onclick="alert('⭐ Super Like! Utamvutia zaidi - Lipia PLUS')">⭐</button>
-<button class="b like" onclick="swipe('right')">❤️</button>
-</div>
+<div style="height:80px"></div>
 
-<div class="plus">
-<b style="color:#ff5a8f">🔥 SOGEA PLUS 15,000 TZS</b><br>
-<span style="font-size:12px">Unlimited Swipes + Ona nani aliku-like</span>
-<div class="num">0793092947 - M-Pesa / Tigo Pesa</div>
-<input id="tid" placeholder="Weka Transaction ID" style="padding:8px;width:70%;border-radius:8px;border:1px solid #ccc">
-<button onclick="alert('Asante! Tutathibitisha 5min')" style="background:#00c851;color:white;border:none;padding:8px 12px;border-radius:8px;margin-left:5px">Nimelipa</button>
+<div class="bottom-nav">
+  <div class="nav active"><span class="ic">🔥</span>Swipe</div>
+  <div class="nav"><span class="ic">◎</span>Explore</div>
+  <div class="nav"><span class="ic">♡</span><span class="badge">3</span>Likes</div>
+  <div class="nav"><span class="ic">💬</span>Chat</div>
+  <div class="nav"><span class="ic">👤</span>Profile</div>
 </div>
-
-<script>
-let cards = document.querySelectorAll('.card');
-let current = cards.length - 1;
-function swipe(dir){
- if(current<0){alert('Hakuna watu tena leo! Rudi kesho au Lipia PLUS uone wengi zaidi');return}
- let card = cards[current];
- card.style.transform = dir==='right' ? 'translateX(400px) rotate(20deg)' : 'translateX(-400px) rotate(-20deg)';
- if(dir==='right'){setTimeout(()=>alert('🔥 It is a MATCH! Neema na wewe mmependana! Anza Chat'),300)}
- current--; 
- setTimeout(()=>{card.style.display='none'},300);
-}
-// Swipe kwa kidole
-let startX=0;
-document.getElementById('stack').addEventListener('touchstart',e=>startX=e.touches[0].clientX);
-document.getElementById('stack').addEventListener('touchend',e=>{
- let diff = e.changedTouches[0].clientX - startX;
- if(diff>100) swipe('right'); else if(diff<-100) swipe('left');
-});
-</script>
-</body>
-</html>
