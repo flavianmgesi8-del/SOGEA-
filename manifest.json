@@ -1,0 +1,9 @@
+{
+  "name": "SOGEA - Pata Mpenzi",
+  "short_name": "SOGEA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ff5a8f",
+  "theme_color": "#ff5a8f",
+  "icons": [{"src": "https://cdn-icons-png.flaticon.com/512/833/833472.png","sizes": "512x512","type": "image/png"}]
+}
